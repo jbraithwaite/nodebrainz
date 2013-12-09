@@ -36,15 +36,19 @@ Lookups can be proformed on any of the eight resources:  `artist`, `label`, `rec
 
 ##### More queries
 
+Search with `limit` and `offset`
+
     nb.search('artist', {artist:'the post service', limit: 4, offset: 2}, function(err,response){ /*work your magic*/ });
+
+Lookup a `release-group`
 
     nb.releaseGroup('df46f245-7f62-4982-9d2c-e83d7be91cbf', null, function(err,response){ /*work your magic*/ });
 
-    nb.release('119c3af8-f649-491d-a219-ea8df4485106', {inc:'recordings+release-groups'}, function(err,response){ /*work your magic*/ });
+Add `inc` for a lookup
 
-    nb.label('dfd92cd3-4888-46d2-b968-328b1feb2642', null, function(err,response){ /*work your magic*/ });
+    nb.release('119c3af8-f649-491d-a219-ea8df4485106', {inc:'recordings+release-groups'}, function(err,response){ /*work your magic*/ });
 
 
 ## To Do
 
-- Testing
+- Unit tests

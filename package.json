@@ -1,12 +1,12 @@
 {
   "name": "nodebrainz",
-  "description": "A MusicBrinainz JSON Web Service Version 2 client",
+  "description": "A MusicBrainz JSON Web Service Version 2 client",
   "keywords": [
     "musicbrainz",
     "music",
     "api"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/jbraithwaite/nodebrainz.git"
@@ -31,7 +31,6 @@
       "url": "https://github.com/jbraithwaite/nodebrainz/raw/master/LICENSE"
     }
   ],
-  "readme": "Work in Progress, do not use in production",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/jbraithwaite/nodebrainz/issues"
