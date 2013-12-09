@@ -1,6 +1,6 @@
 # Another Musicbrainz Node Client
 
-NodeBrainz gives you full access to the [MusicBrainz](http://musicbrainz.org/) Web Service Version 2. This includes [search](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search), [lookup](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups) and [browse]().
+NodeBrainz gives you full access to the [MusicBrainz](http://musicbrainz.org/) API ([Version 2](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/)). This includes [search](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search), [lookup](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups) and [browse](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Browse).
 
 ## Example Usage
 
@@ -26,7 +26,7 @@ Setting a custom host, path and default limit
 
 Lookups can be proformed on any of the eight resources:  `artist`, `label`, `recording`, `release`, `release-group`, `work`, `area`, `url`
 
-    nb.artist(e0140a67-e4d1-4f13-8a01-364355bee46e, {inc:'releases', limit:2} , function(err,response){
+    nb.artist('e0140a67-e4d1-4f13-8a01-364355bee46e', {inc:'releases', limit:2} , function(err,response){
         if (err) { /*handle error*/ }
         console.log(response);
     });
