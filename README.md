@@ -9,7 +9,11 @@ MusicBrainz asks that you [identifying your application](http://musicbrainz.org/
     var NB = require('nodebrainz');
 
     // Initialize the nodebrainz
-    var nb = new NB({userAgent:'my-awesome-app/0.0.1 (+http://my-awesome-app.com)'})
+    var nb = new NB({userAgent:'my-awesome-app/0.0.1 (+http://my-awesome-app.com)'});
+
+Setting a custom host, path and default limit
+
+    var nb = new NB({host:'localhost', path:'/path/to/data/', defaultLimit: 50});
 
 #### Search
 
