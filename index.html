@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Nodebrainz by jbraithwaite</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Nodebrainz</h1>
+        <h2>Another musicbrainz node client</h2>
+        <a href="https://github.com/jbraithwaite/nodebrainz" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="another-musicbrainz-node-client" class="anchor" href="#another-musicbrainz-node-client"><span class="octicon octicon-link"></span></a>Another Musicbrainz Node Client</h1>
+
+<p>NodeBrainz is a thin wrapper that gives you full access to the <a href="http://musicbrainz.org/">MusicBrainz</a> API (<a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/">Version 2</a>). This includes <a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">search</a>, <a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups">lookup</a> and <a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Browse">browse</a>.</p>
+
+<h3>
+<a name="example-usage" class="anchor" href="#example-usage"><span class="octicon octicon-link"></span></a>Example Usage</h3>
+
+<p>MusicBrainz asks that you <a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2#Identifying_your_application_to_the_MusicBrainz_Web_Service">identifying your application</a> so be sure to set the <code>userAgent</code>. You may consider following the conventions of <a href="http://tools.ietf.org/html/rfc1945#section-3.7">RFC 1945</a></p>
+
+<pre><code>var NB = require('nodebrainz');
+
+// Initialize NodeBrainz
+var nb = new NB({userAgent:'my-awesome-app/0.0.1 (+http://my-awesome-app.com)'});
+</code></pre>
+
+<p>Setting a custom <code>host</code>, <code>path</code> and <code>defaultLimit</code> (if not set, the <code>defaultLimit</code> is 25);</p>
+
+<pre><code>var nb = new NB({host:'localhost', path:'/path/to/data/', defaultLimit:50});
+</code></pre>
+
+<h2>
+<a name="musicbrainz-entities" class="anchor" href="#musicbrainz-entities"><span class="octicon octicon-link"></span></a>MusicBrainz Entities</h2>
+
+<p>There are eight entities: <code>artist</code>, <code>label</code>, <code>recording</code>, <code>release</code>, <code>release-group</code>, <code>work</code>, <code>area</code>, <code>url</code></p>
+
+<h2>
+<a name="lookup" class="anchor" href="#lookup"><span class="octicon octicon-link"></span></a>Lookup</h2>
+
+<p>Lookups can be preformed on any of the eight entities.</p>
+
+<p>Lookup an <code>artist</code> and include their <code>releases</code>, <code>release-groups</code> and <code>aliases</code></p>
+
+<pre><code>nb.artist('e0140a67-e4d1-4f13-8a01-364355bee46e', {inc:'releases+release-groups+aliases'} , function(err, response){
+    console.log(response);
+});
+</code></pre>
+
+<p>Lookup a <code>release-group</code> with no filtering or subqueries</p>
+
+<pre><code>nb.releaseGroup('df46f245-7f62-4982-9d2c-e83d7be91cbf', function(err, response){
+    console.log(response);
+});
+</code></pre>
+
+<p>There are different subqueries you can include depending on the entities.</p>
+
+<ul>
+<li>
+<strong>Arists</strong> - <code>recordings</code>, <code>releases</code>, <code>release-groups</code>, <code>works</code>
+</li>
+<li>
+<strong>Label</strong> - <code>releases</code>
+</li>
+<li>
+<strong>Recording</strong> - <code>artists</code>, <code>releases</code>
+</li>
+<li>
+<strong>Release</strong> - <code>artists</code>, <code>labels</code>, <code>recordings</code>, <code>release-groups</code>
+</li>
+<li>
+<strong>Release-group</strong> - <code>artists</code>, <code>releases</code>
+</li>
+</ul><p>Check out the some of the additional <a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2#inc.3D_arguments_which_affect_subqueries">subqueries</a>. Note that the number of linked entities returned is always limited to 25, if you need the remaining results, you will have to perform a <code>browse</code> or <code>search</code>.</p>
+
+<h2>
+<a name="browse" class="anchor" href="#browse"><span class="octicon octicon-link"></span></a>Browse</h2>
+
+<p>Browse requests are a direct lookup of all the entities directly linked to another entity. For example, if you wanted to look up all the <code>release-groups</code> for a particularly talented artist:</p>
+
+<pre><code>nb.browse('release-group', {artist:'e0140a67-e4d1-4f13-8a01-364355bee46e'}, function(err, response){
+  console.log(response);
+});
+</code></pre>
+
+<p>Browsed entities are always ordered alphabetically by gid. If you need to sort the entities, you will have to fetch all entities and sort them yourself. For pagination, set a <code>limit</code> and <code>offset</code>.</p>
+
+<pre><code>nb.browse('release-group', {artist:'e0140a67-e4d1-4f13-8a01-364355bee46e', type:'album', limit:2, offset:1}, function(err, response){
+  console.log(response);
+});
+</code></pre>
+
+<p>Note that <code>browse</code> requests are not <code>searches</code>, in order to browse all the <code>releases-groups</code> for an <code>artist</code>, you need to provide the <code>MBID</code> for the <code>artist</code>.</p>
+
+<h2>
+<a name="search" class="anchor" href="#search"><span class="octicon octicon-link"></span></a>Search</h2>
+
+<p>Provides a way to search for entities. Behind the scenes, results are provided by a search server using Lucene technology.</p>
+
+<pre><code>nb.search('artist', {artist:'tool', country:'US'}, function(err, response){
+    console.log(response);
+});
+</code></pre>
+
+<h3>
+<a name="search-fields" class="anchor" href="#search-fields"><span class="octicon octicon-link"></span></a>Search Fields</h3>
+
+<p>There are different search fields depending on the entity.</p>
+
+<ul>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Artist">Artist</a></li>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Label">Label</a></li>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Recording">Recording</a></li>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Release">Release</a></li>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Release_Group">Release-group</a></li>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Work">Work</a></li>
+<li><a href="http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search#Area">Area</a></li>
+</ul><p>Search for all <code>releases</code> for the <code>artists</code> named <em>pink floyd</em>. Limited to 20 and offset by 5</p>
+
+<pre><code>nb.search('release', {artist:'pink floyd', limit:20, offset:5}, function(err, response){
+  console.log(response);
+});
+</code></pre>
+
+<p>Search for all the studio albums for a specific artist (identified by their MBID)</p>
+
+<pre><code>nb.search('release-group', {arid:'e0140a67-e4d1-4f13-8a01-364355bee46e', type:"album"}, function(err, response){
+  console.log(response);
+});
+</code></pre>
+
+<h2>
+<a name="to-do" class="anchor" href="#to-do"><span class="octicon octicon-link"></span></a>To Do</h2>
+
+<ul>
+<li>Unit tests</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/jbraithwaite/nodebrainz/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/jbraithwaite/nodebrainz/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/jbraithwaite/nodebrainz"></a> is maintained by <a href="https://github.com/jbraithwaite">jbraithwaite</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-5108598-14");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
