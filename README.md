@@ -99,9 +99,9 @@ There are different search fields depending on the entity.
 Search for all `releases` for the `artists` named *pink floyd*. Limited to 20 and offset by 5
 
 ```javascript
-    nb.search('release', {artist:'pink floyd', limit:20, offset:5}, function(err, response){
-      console.log(response);
-    });
+nb.search('release', {artist:'pink floyd', limit:20, offset:5}, function(err, response){
+  console.log(response);
+});
 ```
 Search for all the studio albums for a specific `artist` (identified by their artist ID)
 
@@ -120,7 +120,3 @@ nb.luceneSearch('artist',{query:'artist:t??l AND -artist:"Jethro Tull"', limit: 
   console.log(response);
 });
 ```
-
-## To Do
-
-- Unit tests
