@@ -21,6 +21,12 @@
   },
   "dependencies": {
   },
+  "devDependencies": {
+    "mocha": ">=1.15.1"
+  },
+  "scripts": {
+    "test": "make test"
+  },
   "engines": [
     "node >=0.9.0"
   ],

@@ -1,6 +1,6 @@
 # Another Musicbrainz Node Client
 
-[![NPM](https://nodei.co/npm/nodebrainz.png?downloads=true)](https://nodei.co/npm/nodebrainz/)
+[![Build Status](https://secure.travis-ci.org/jbraithwaite/nodebrainz.png?branch=master)](http://travis-ci.org/jbraithwaite/nodebrainz)
 
 NodeBrainz is a thin wrapper that gives you full access to the [MusicBrainz](http://musicbrainz.org/) API ([Version 2](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/)). This includes [search](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search), [lookup](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups) and [browse](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Browse). It has zero dependences, consumes only JSON (no blocking XML parsing), and includes a powerful [Lucene search feature](#lucene-search).
 
@@ -120,3 +120,5 @@ nb.luceneSearch('artist',{query:'artist:t??l AND -artist:"Jethro Tull"', limit: 
   console.log(response);
 });
 ```
+
+[![NPM](https://nodei.co/npm/nodebrainz.png?downloads=true)](https://nodei.co/npm/nodebrainz/)
