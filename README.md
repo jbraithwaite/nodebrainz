@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/nodebrainz.png?downloads=true)](https://nodei.co/npm/nodebrainz/)
 
-NodeBrainz is a thin wrapper that gives you full access to the [MusicBrainz](http://musicbrainz.org/) API ([Version 2](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/)). This includes [search](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search), [lookup](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups) and [browse](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Browse). It has zero dependences, consumes only JSON (no blocking XML parsing), and includes a powerful [Lucene search feature](#lucene-fields).
+NodeBrainz is a thin wrapper that gives you full access to the [MusicBrainz](http://musicbrainz.org/) API ([Version 2](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/)). This includes [search](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search), [lookup](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups) and [browse](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Browse). It has zero dependences, consumes only JSON (no blocking XML parsing), and includes a powerful [Lucene search feature](#lucene-search).
 
 ### Example Usage
 
