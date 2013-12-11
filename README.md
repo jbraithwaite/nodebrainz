@@ -15,10 +15,10 @@ var NB = require('nodebrainz');
 var nb = new NB({userAgent:'my-awesome-app/0.0.1 ( http://my-awesome-app.com )'});
 ```
 
-Setting a custom `host`, `path` and `defaultLimit` (if not set, the `defaultLimit` is 25);
+Setting a custom `host`, `basePath` and `defaultLimit` (if not set, the `defaultLimit` is 25);
 
 ```javascript
-var nb = new NB({host:'localhost', path:'/path/to/data/', defaultLimit:50});
+var nb = new NB({host:'localhost', basePath:'/path/to/data/', defaultLimit:50});
 ```
 
 ## MusicBrainz Entities
