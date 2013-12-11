@@ -1,5 +1,6 @@
 var NB = require('../lib/nodebrainz');
 
+// We don't actually want to make real http requests, this fakes it for us.
 NB.prototype.request = function(config, callback){
 
   var options = {
@@ -301,7 +302,6 @@ describe('nb', function(){
       nb.browse('release-group', {artist:'e0140a67-e4d1-4f13-8a01-364355bee46e', type:'album', limit:2, offset:1, inc: 'artist-credits'}, function(err, response){
           assert.equal(nb.path, '/ws/2/release-group?fmt=json&artist=e0140a67-e4d1-4f13-8a01-364355bee46e&type=album&limit=2&offset=1&inc=artist-credits');
       });
-
     });
 
   });
