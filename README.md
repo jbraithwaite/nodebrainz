@@ -12,7 +12,7 @@ MusicBrainz asks that you [identifying your application](http://musicbrainz.org/
 var NB = require('nodebrainz');
 
 // Initialize NodeBrainz
-var nb = new NB({userAgent:'my-awesome-app/0.0.1 (+http://my-awesome-app.com)'});
+var nb = new NB({userAgent:'my-awesome-app/0.0.1 ( http://my-awesome-app.com )'});
 ```
 
 Setting a custom `host`, `path` and `defaultLimit` (if not set, the `defaultLimit` is 25);
@@ -32,7 +32,7 @@ Lookups can be preformed on any of the eight entities.
 Lookup an `artist` and include their `releases`, `release-groups` and `aliases`
 
 ```javascript
-nb.artist('e0140a67-e4d1-4f13-8a01-364355bee46e', {inc:'releases+release-groups+aliases'} , function(err, response){
+nb.artist('e0140a67-e4d1-4f13-8a01-364355bee46e', {inc:'releases+release-groups+aliases'}, function(err, response){
     console.log(response);
 });
 ```
@@ -103,7 +103,7 @@ Search for all `releases` for the `artists` named *pink floyd*. Limited to 20 an
       console.log(response);
     });
 ```
-Search for all the studio albums for a specific artist (identified by their MBID)
+Search for all the studio albums for a specific `artist` (identified by their artist ID)
 
 ```javascript
 nb.search('release-group', {arid:'e0140a67-e4d1-4f13-8a01-364355bee46e', type:"album"}, function(err, response){
