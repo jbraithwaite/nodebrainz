@@ -95,7 +95,13 @@ Search for all the studio albums for a specific artist (identified by their MBID
       console.log(response);
     });
 
+Create powerful queries using `luceneSearch`. View the [syntax guide](https://lucene.apache.org/core/4_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description)
 
+```javascript
+nb.luceneSearch('artist',{query:'artist:t??l AND -artist:"Jethro Tull"', limit: 2, offset: 1}, function(err, response){
+  console.log(response);
+});
+```
 
 ## To Do
 
