@@ -5,6 +5,7 @@ NB.prototype.request = function(config, callback){
 
   var options = {
     host: config.host,
+    port: config.port,
     path: config.path,
     headers: {
       'user-agent': config.userAgent
@@ -34,6 +35,11 @@ describe('nb', function(){
         assert.equal(nb.host, 'musicbrainz.org');
       });
 
+      it('port', function(){
+        var nb = new NB();
+        assert.equal(nb.port, 80);
+      });
+
       it('path', function(){
         var nb = new NB();
         assert.equal(nb.basePath, '/ws/2/');
@@ -52,6 +58,11 @@ describe('nb', function(){
 
     });
 
+    it('Can set port', function(){
+      var nb = new NB({port:5000});
+      assert.equal(nb.port, 5000);
+    });
+
     it('Can set Path', function(){
       var nb = new NB({basePath:'/path/to/data/'});
       assert.equal(nb.basePath, '/path/to/data/');
@@ -63,9 +74,10 @@ describe('nb', function(){
     });
 
     it('Can set all at the same time', function(){
-      var nb = new NB({host:'localhost',basePath:'/path/to/data/',userAgent:'my-app/0.0.1 ( http://myapp.com )'});
+      var nb = new NB({host:'localhost',port: 5001, basePath:'/path/to/data/',userAgent:'my-app/0.0.1 ( http://myapp.com )'});
       assert.equal(nb.userAgent, 'my-app/0.0.1 ( http://myapp.com )');
       assert.equal(nb.host, 'localhost');
+      assert.equal(nb.port, 5001);
       assert.equal(nb.basePath, '/path/to/data/');
     });
 
