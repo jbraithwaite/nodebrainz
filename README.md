@@ -1,6 +1,6 @@
 # Another Musicbrainz Node Client
 
-[![Build Status](https://secure.travis-ci.org/jbraithwaite/nodebrainz.png?branch=master)](http://travis-ci.org/jbraithwaite/nodebrainz)
+[![Build Status](https://secure.travis-ci.org/jbraithwaite/nodebrainz.png?branch=master)](http://travis-ci.org/jbraithwaite/nodebrainz) [![Total views](https://sourcegraph.com/api/repos/github.com/jbraithwaite/nodebrainz/counters/views.png)](https://sourcegraph.com/github.com/jbraithwaite/nodebrainz)
 
 NodeBrainz is a thin wrapper that gives you full access to the [MusicBrainz](http://musicbrainz.org/) API ([Version 2](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/)). This includes [search](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search), [lookup](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Lookups) and [browse](http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/#Browse). It has zero dependences, consumes only JSON (no blocking XML parsing), and includes a powerful [Lucene search feature](#lucene-search).
 
@@ -15,10 +15,10 @@ var NB = require('nodebrainz');
 var nb = new NB({userAgent:'my-awesome-app/0.0.1 ( http://my-awesome-app.com )'});
 ```
 
-Setting a custom `host`, `basePath` and `defaultLimit` (if not set, the `defaultLimit` is 25);
+Setting a custom `host`, `basePath`, `port` and `defaultLimit` (if not set, the `defaultLimit` is 25 and `port` is 80);
 
 ```javascript
-var nb = new NB({host:'localhost', basePath:'/path/to/data/', defaultLimit:50});
+var nb = new NB({host:'localhost', port:8080, basePath:'/path/to/data/', defaultLimit:50});
 ```
 
 ## MusicBrainz Entities
