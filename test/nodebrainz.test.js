@@ -345,7 +345,7 @@ describe('nb', function() {
       assert.equal(nb.retryOn, true);
       assert.equal(nb.retryDelay, 1500);
       assert.equal(nb.retryCount, 1);
-      nb.artist('e0140a67-e4d1-4f13-8a01-364355bee46e', {} , function(err) {
+      nb.artist('e0140a67-e4d1-4f13-8a01-364355bee46e', {}, function(err) {
         assert.equal(err.statusCode, 503);
         done();
       });
