@@ -6,7 +6,7 @@
     "music",
     "api"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/jbraithwaite/nodebrainz.git"
@@ -27,16 +27,9 @@
   "scripts": {
     "test": "make test"
   },
-  "engines": [
-    "node >=0.9.0"
-  ],
+  "engines": "node >=0.4.3",
   "main": "./lib/nodebrainz",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jbraithwaite/nodebrainz/raw/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/jbraithwaite/nodebrainz/issues"

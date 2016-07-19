@@ -21,6 +21,11 @@ Setting a custom `host`, `basePath`, `port` and `defaultLimit` (if not set, the 
 var nb = new NB({host:'localhost', port:8080, basePath:'/path/to/data/', defaultLimit:50});
 ```
 
+Also supported are automatic retries for Musicbrainz rate-limiting.
+```javascript
+var nb = new NB({retryOn: true, retryDelay: 3000, retryCount: 3});
+```
+
 ## MusicBrainz Entities
 
 There are eight entities: `artist`, `label`, `recording`, `release`, `release-group`, `work`, `area`, `url`
