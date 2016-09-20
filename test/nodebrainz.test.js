@@ -1,6 +1,6 @@
 "use strict";
 
-const NB = require('../lib/nodebrainz')
+var NB = require('../lib/nodebrainz')
     , assert = require("assert");
 
 describe('nb', function() {
